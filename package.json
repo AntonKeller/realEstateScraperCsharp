@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "playwright": "^1.35.1",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}
