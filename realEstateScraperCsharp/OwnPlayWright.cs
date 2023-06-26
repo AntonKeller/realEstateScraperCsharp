@@ -7,40 +7,37 @@ using Microsoft.Playwright;
 using PlaywrightExtraSharp.Models;
 using PlaywrightExtraSharp;
 using PlaywrightExtraSharp.Plugins.ExtraStealth;
+using Newtonsoft.Json.Linq;
+using Esprima.Ast;
+using System.Security.Policy;
 
 namespace realEstateScraperCsharp
 {
-    internal class OwnPlayWright
+
+    class Student
     {
-        public static async Task Main()
+        public string firstName;
+        public string middleName;
+        public string lastName;
+        public int age;
+        public double height;
+        public double width;
+    }
+
+    internal class MyPlaywrightExtra
+    {
+        public static async Task<PlaywrightExtra> OpenBrowser(bool headless = false)
         {
-            // Initialization plugin builder
-            var playwrightExtra = new PlaywrightExtra(BrowserTypeEnum.Chromium);
-
-            // Install browser
-            playwrightExtra.Install();
-
-            // Use stealth plugin
-            playwrightExtra.Use(new StealthExtraPlugin());
-
-            // Launch the puppeteer browser with plugins
-            await playwrightExtra.LaunchAsync(new BrowserTypeLaunchOptions()
+            var playwright = new PlaywrightExtra(BrowserTypeEnum.Chromium);
+            playwright.Install();
+            playwright.Use(new StealthExtraPlugin());
+            await playwright.LaunchAsync(new BrowserTypeLaunchOptions()
             {
-                Headless = true
+                Headless = headless
             });
-
-            // Create a new page
-            var page = await playwrightExtra.NewPageAsync();
-            await page.GotoAsync("https://www.cian.ru/cat.php?deal_type=sale&engine_version=2&offer_type=offices&office_type%5B0%5D=1&p=7&region=1");
-            await page.ScreenshotAsync(new() { Path = "StealthScreenshot.png" });
-            //await page.Close();
-
-            /*
-            using var playwright = await Playwright.CreateAsync();
-            await using var browser = await playwright.Chromium.LaunchAsync(new() { Headless = false });
-            var page = await browser.NewPageAsync();
-            await page.GotoAsync("https://playwright.dev/dotnet");
-            await page.ScreenshotAsync(new() { Path = "screenshot.png" });*/
+            return playwright;
+            //this.MyPage = await this.MyBrowser.NewPageAsync();
         }
+        //public static async Task
     }
 }
