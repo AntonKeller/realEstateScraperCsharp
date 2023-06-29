@@ -11,7 +11,6 @@ using System.Xml.Linq;
 
 namespace realEstateScraperCsharp.Modules.API
 {
-
     class DSDirection
     {
         public string Code;
