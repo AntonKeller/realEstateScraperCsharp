@@ -172,8 +172,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\CianOffer.cs" />
-    <Compile Include="Models\RealEstateModels.cs" />
+    <Compile Include="Modules\Adapter.cs" />
+    <Compile Include="Modules\API\CianAPI.cs" />
+    <Compile Include="Modules\CianOffer.cs" />
+    <Compile Include="Modules\RealEstateModels.cs" />
     <Compile Include="OwnPlayWright.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

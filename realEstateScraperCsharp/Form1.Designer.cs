@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveExcelTestMethod = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.FormToolsBrowserOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.FormToolsBrowserClose = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,25 +48,12 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.FormIntervalElement = new System.Windows.Forms.ToolStripStatusLabel();
             this.FormProgramVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.formUrlInput = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.FormListDataLoadedHistory = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.LoadTestData = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(140, 125);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(168, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Открыть страницу";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // progressBar1
             // 
@@ -94,7 +81,9 @@
             this.toolStripMenuItem2,
             this.FormToolsBrowserOpen,
             this.FormToolsBrowserClose,
-            this.toolStripMenuItem1});
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem3,
+            this.LoadTestData});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
@@ -102,25 +91,35 @@
             // открытьФайлToolStripMenuItem
             // 
             this.открытьФайлToolStripMenuItem.Name = "открытьФайлToolStripMenuItem";
-            this.открытьФайлToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.открытьФайлToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
             this.открытьФайлToolStripMenuItem.Text = "Открыть файл";
             this.открытьФайлToolStripMenuItem.Click += new System.EventHandler(this.открытьФайлToolStripMenuItem_Click);
             // 
             // сохранитьToolStripMenuItem
             // 
+            this.сохранитьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveExcelTestMethod});
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
+            // 
+            // SaveExcelTestMethod
+            // 
+            this.SaveExcelTestMethod.Name = "SaveExcelTestMethod";
+            this.SaveExcelTestMethod.Size = new System.Drawing.Size(193, 22);
+            this.SaveExcelTestMethod.Text = "Сохранить Excel (test)";
+            this.SaveExcelTestMethod.Click += new System.EventHandler(this.SaveExcelTestMethod_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(173, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(225, 6);
             // 
             // FormToolsBrowserOpen
             // 
             this.FormToolsBrowserOpen.Name = "FormToolsBrowserOpen";
-            this.FormToolsBrowserOpen.Size = new System.Drawing.Size(176, 22);
+            this.FormToolsBrowserOpen.Size = new System.Drawing.Size(228, 22);
             this.FormToolsBrowserOpen.Text = "Запустить браузер";
             this.FormToolsBrowserOpen.Click += new System.EventHandler(this.FormToolsBrowserOpen_Click);
             // 
@@ -128,14 +127,14 @@
             // 
             this.FormToolsBrowserClose.Enabled = false;
             this.FormToolsBrowserClose.Name = "FormToolsBrowserClose";
-            this.FormToolsBrowserClose.Size = new System.Drawing.Size(176, 22);
+            this.FormToolsBrowserClose.Size = new System.Drawing.Size(228, 22);
             this.FormToolsBrowserClose.Text = "Закрыть браузер";
             this.FormToolsBrowserClose.Click += new System.EventHandler(this.FormToolsBrowserClose_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(173, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(225, 6);
             // 
             // настройкиToolStripMenuItem
             // 
@@ -212,60 +211,27 @@
             this.FormProgramVersion.Size = new System.Drawing.Size(154, 17);
             this.FormProgramVersion.Text = "Версия программы: 1.0.0.1";
             // 
-            // formUrlInput
+            // toolStripMenuItem3
             // 
-            this.formUrlInput.Location = new System.Drawing.Point(140, 99);
-            this.formUrlInput.Name = "formUrlInput";
-            this.formUrlInput.Size = new System.Drawing.Size(168, 20);
-            this.formUrlInput.TabIndex = 6;
-            this.formUrlInput.Text = "https://www.cian.ru/cat.php?deal_type=sale&engine_version=2&offer_type=offices&of" +
-    "fice_type%5B0%5D=3&p=2&region=1";
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(225, 6);
             // 
-            // groupBox1
+            // LoadTestData
             // 
-            this.groupBox1.Controls.Add(this.FormListDataLoadedHistory);
-            this.groupBox1.Location = new System.Drawing.Point(565, 39);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(207, 368);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Текущие данные";
+            this.LoadTestData.Name = "LoadTestData";
+            this.LoadTestData.Size = new System.Drawing.Size(228, 22);
+            this.LoadTestData.Text = "Загрузить тестовые дынные";
+            this.LoadTestData.Click += new System.EventHandler(this.LoadTestData_Click);
             // 
-            // FormListDataLoadedHistory
+            // button1
             // 
-            this.FormListDataLoadedHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FormListDataLoadedHistory.FormattingEnabled = true;
-            this.FormListDataLoadedHistory.ItemHeight = 16;
-            this.FormListDataLoadedHistory.Items.AddRange(new object[] {
-            "1/Аренда,Продажа/Гаражи,Офисы,Склады/A+,A,B+,B/21.06.2023",
-            "2/Продажа/Офисы/21.06.2023",
-            "3/Аренда,Продажа/Склады/A+,A,B+,B/21.06.2023",
-            "4/Аренда/Офисы,Склады/A+,A,B+,B/21.06.2023"});
-            this.FormListDataLoadedHistory.Location = new System.Drawing.Point(6, 19);
-            this.FormListDataLoadedHistory.Name = "FormListDataLoadedHistory";
-            this.FormListDataLoadedHistory.Size = new System.Drawing.Size(195, 340);
-            this.FormListDataLoadedHistory.TabIndex = 9;
-            this.FormListDataLoadedHistory.SelectedIndexChanged += new System.EventHandler(this.FormListDataLoadedHistory_SelectedIndexChanged);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(257, 49);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Создать файл";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_2);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(140, 154);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(168, 24);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Загрузить предложения";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            this.button1.Location = new System.Drawing.Point(22, 42);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
             // Form1
             // 
@@ -273,13 +239,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(784, 461);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.formUrlInput);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -288,15 +250,12 @@
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
@@ -312,15 +271,14 @@
         private System.Windows.Forms.ToolStripMenuItem FormToolsBrowserOpen;
         private System.Windows.Forms.ToolStripMenuItem FormToolsBrowserClose;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.TextBox formUrlInput;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ListBox FormListDataLoadedHistory;
         private System.Windows.Forms.ToolStripStatusLabel FormProgramVersion;
         private System.Windows.Forms.ToolStripStatusLabel FormIntervalElement;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ToolStripMenuItem SaveExcelTestMethod;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem LoadTestData;
+        private System.Windows.Forms.Button button1;
     }
 }
 

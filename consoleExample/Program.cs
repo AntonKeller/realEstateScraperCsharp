@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -174,19 +175,144 @@ class APIDataProvider : IDataProvider
     }
 }
 
+
+public class Ex1
+{
+    public string A { get; set; }
+    public int B { get; set; }
+    public Ex1(string a, int b)
+    {
+        this.A = a; this.B = b;
+    }
+    public Ex1(Ex1 e)
+    {
+        this.A = e.A; 
+        this.B = e.B;
+    }
+}
+public class Ex2
+{
+    public string C { get; set; }
+    public int D { get; set; }
+    public Ex2(string c, int d)
+    {
+        this.C = c; this.D = d;
+    }
+    public Ex2(Ex2 e)
+    {
+        this.C = e.C;
+        this.D = e.D;
+    }
+}
+
+class All
+{
+    public Ex1 ex1 { get; set; }
+    public Ex2 ex2 { get; set; }
+    public All(Ex1 e1, Ex2 e2)
+    {
+        this.ex1 = new Ex1(e1);
+        this.ex2 = new Ex2(e2);
+    }
+}
+
+interface ITranslateAll
+{
+    void Translate(All allFields);
+}
+
+class Model1 : ITranslateAll
+{
+    public string A { get; set; }
+    public int D { get; set; }
+    public void Translate(All allFields)
+    {
+        this.A = allFields.ex1.A;
+        this.D = allFields.ex2.D;
+    }
+}
+
+
+
+class Human
+{
+    protected int height;
+    protected int weight;
+}
+
+class CMan : Human
+{
+    private string FirstName;
+    private string LastName;
+}
+
+class CWoman : Human
+{
+    private string FirstName;
+    private string LastName;
+}
+
+class Printer
+{
+    public void Print(Human human)
+    {
+        Console.WriteLine(human);
+    }
+}
+
+class Dog
+{
+    public int Age { get; set; }
+    public string Name { get; set; }
+    public bool IsHungry { get; set; }
+    public Dog(int age = 0, string name = "Бобик", bool isHungry = false)
+    {
+        Age = age;
+        Name = name;
+        IsHungry = isHungry;
+    }
+}
+
+class ManMan
+{
+    public int Age { get; set; }
+    public bool IsHungry { get; set; }
+    public void PrintName()
+    {
+        Console.WriteLine("");
+    }
+}
+
+
 class Program
 {
     static void Main(string[] args)
     {
+        //Console.WriteLine("start");
+        //Dog bobik = new Dog();
+        //ManMan manMan = new ManMan();
 
-        IDataProcessor dataProcessor = new ConsoleDataProcessor();
-        
-        var IDataProvider_1 = new DBDataProvider();
-        var IDataProvider_2 = new APIDataProvider();
+        //CopyData(manMan, bobik);
 
-        dataProcessor.PrintData(IDataProvider_1);
-        dataProcessor.PrintData(IDataProvider_2);
-        Console.WriteLine("");
+        //foreach (FieldInfo field in bobik.GetType().GetFields())
+        //{
+        //    Console.WriteLine($"Field type: {field.FieldType} |Field name: {field.Name}");
+        //    Console.WriteLine($"Get property: {bobik.GetType().GetProperty(field.Name)}");
+        //}
+        //Console.WriteLine("");
+
+        //var woman = new CWoman();
+        //var man = new CMan();
+
+
+        //IDataProcessor dataProcessor = new ConsoleDataProcessor();
+
+        //var IDataProvider_1 = new DBDataProvider();
+        //var IDataProvider_2 = new APIDataProvider();
+
+        //dataProcessor.PrintData(IDataProvider_1);
+        //dataProcessor.PrintData(IDataProvider_2);
+        //Console.WriteLine("");
 
         //var ak47 = new AK47();
         //var m4a1 = new M4A1();
@@ -245,6 +371,28 @@ class Program
         //Console.WriteLine("employee 2 printing:");
         //employee2?.PrintFull();
         Console.WriteLine("");
+    }
+
+    static void CopyData(object source, object destination)
+    {
+        Type sourceType = source.GetType();
+        Type destinationType = destination.GetType();
+
+        PropertyInfo[] sourceProperties = sourceType.GetProperties();
+        PropertyInfo[] destinationProperties = destinationType.GetProperties();
+
+        foreach (PropertyInfo sourceProperty in sourceProperties)
+        {
+            foreach (PropertyInfo destinationProperty in destinationProperties)
+            {
+                if (sourceProperty.Name == destinationProperty.Name && sourceProperty.PropertyType == destinationProperty.PropertyType)
+                {
+                    object value = sourceProperty.GetValue(source);
+                    destinationProperty.SetValue(destination, value);
+                    break;
+                }
+            }
+        }
     }
 }
 
