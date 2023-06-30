@@ -14,14 +14,59 @@ using System.Xml.Linq;
 
 namespace realEstateScraperCsharp.Modules.API
 {
-    class DistrictStructure
+    class Coordinates
     {
-        public int? Region_id;
-        public int? City_id;
-        public int? Id;
-        public string Name;
-        public string Type;
-        public DistrictStructure[] Childs;
+        public float? Lat { get; set; }
+        public float? Lng { get; set; }
+    }
+
+
+    class BoundedByType
+    {
+        public Coordinates LowerCorner { get; set; }
+        public Coordinates UpperCorner { get; set; }
+    }
+
+    class CianUnit
+    {
+        public int? Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    class CianTerritorialUnit : CianUnit
+    {
+        public int? ParentId { get; set; }
+        public string FullName { get; set; }
+        public string DisplayName { get; set; }
+        public float? Lat { get; set; }
+        public float? Lng { get; set; }
+        public bool? HasDistricts { get; set; }
+        public bool? HasMetro { get; set; }
+        public bool? HasHighway { get; set; }
+        public bool? HasNeighbors { get; set; }
+        public BoundedByType BoundedBy { get; set; }
+    }
+
+    class RegionStructure : CianTerritorialUnit
+    {
+        public int? MainTownId { get; set; }
+        public string BaseHost { get; set; }
+        public string PrepositionalPretext { get; set; }
+        public string FullNamePrepositional { get; set; }
+    }
+
+    class CitiyStructure : CianTerritorialUnit
+    {
+        public int? Region_id { get; set; }
+        public int? MainTownId { get; set; }
+    }
+
+    class DistrictStructure : CianUnit
+    {
+        public int? Region_id { get; set; }
+        public int? City_id { get; set; }
+        public string Type { get; set; }
+        public DistrictStructure[] Childs { get; set; }
     }
 
     class LinksGeneration
@@ -39,18 +84,38 @@ namespace realEstateScraperCsharp.Modules.API
 
     internal class CianAPI
     {
+        private readonly string PathRegions = Path.Combine(Directory.GetCurrentDirectory(), "Modules", "API", "dataSource", "cian_regions.json");
+        private readonly string PathCities = Path.Combine(Directory.GetCurrentDirectory(), "Modules", "API", "dataSource", "cian_cities.json");
+        private readonly string PathDistricts = Path.Combine(Directory.GetCurrentDirectory(), "Modules", "API", "dataSource", "cian_districts.json");
 
-        public async Task<DistrictStructure[]> GetCianDistricts(IPage page, int cityId)
+
+
+        private async Task<string> ReadJsonFile(string path)
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "Modules", "API", "dataSource", "cian_districts.json");
             var fs = new FileStream(path, FileMode.Open);
-            // выделяем массив для считывания данных из файла
             byte[] buffer = new byte[fs.Length];
-            // считываем данные
             await fs.ReadAsync(buffer, 0, buffer.Length);
-            // декодируем байты в строку
-            string textFromFile1 = Encoding.UTF8.GetString(buffer);
-            return JsonConvert.DeserializeObject<DistrictStructure[]>(textFromFile1);
+            return Encoding.UTF8.GetString(buffer);
+        }
+
+        public async Task<RegionStructure[]> GetCianRegions(IPage page = null)
+        {
+            string fileStr = await ReadJsonFile(PathRegions);
+            return JsonConvert.DeserializeObject<RegionStructure[]>(fileStr);
+        }
+
+        public async Task<CitiyStructure> GetCianCitiesByRegionId(int regionId, IPage page = null)
+        {
+            string fileStr = await ReadJsonFile(PathCities);
+            var respArrDistr = JsonConvert.DeserializeObject<CitiyStructure[]>(fileStr);
+            return Array.Find<CitiyStructure>(respArrDistr, (e) => e.Region_id == regionId);
+        }
+
+        public async Task<DistrictStructure> GetCianDistrictsByCityId(int cityId, IPage page = null)
+        {
+            string fileStr = await ReadJsonFile(PathDistricts);
+            var respArrDistr = JsonConvert.DeserializeObject<DistrictStructure[]>(fileStr);
+            return Array.Find<DistrictStructure>(respArrDistr, (e) => e.City_id == cityId);
         }
 
         public async Task<LinksGeneration> PageLinksGenerator(IPage page, string baseUrl)

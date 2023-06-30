@@ -59,19 +59,7 @@ namespace realEstateScraperCsharp
 
         private void открытьФайлToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "(*.json)|";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    //Get the path of specified file
-                    string filePath = openFileDialog.FileName;
-                }
-            }
+            
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -307,10 +295,84 @@ namespace realEstateScraperCsharp
 
         private async void button1_Click_3(object sender, EventArgs e)
         {
+            
+        }
+
+        private void загрузитьСписокРегионовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void сохранитьВJsonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OpenProjectFromFile_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "(*.json)|";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    string filePath = openFileDialog.FileName;
+                }
+            }
+        }
+
+        private void сохранитьПроектToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SaveProjectToFIle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void TestLoadRegions_Click(object sender, EventArgs e)
+        {
             var api = new CianAPI();
-            var districts = await api.GetCianDistricts(this.Page, 4927);
-            var res = api.SearchDistrictInArray(districts, "Кировский", "Raion");
-            Console.WriteLine("");
+            var regions = await api.GetCianRegions();
+            var fields = regions[0].GetType().GetFields();
+            TableTitle[] titles =
+            {
+                new TableTitle("Id", "Id"),
+                new TableTitle("Name", "Name"),
+                new TableTitle("Lat", "IdLat"),
+                new TableTitle("Lng", "Lng"),
+                new TableTitle("FullName", "FullName"),
+                new TableTitle("DisplayName", "DisplayName"),
+            };
+            
+            foreach ( var title in titles)
+                Table.Columns.Add(title.Name, title.RuTitle);
+
+            foreach (var region in regions)
+                Table.Rows.Add(
+                    region.Id, 
+                    region.Name, 
+                    region.Lat, 
+                    region.Lng, 
+                    region.FullName, 
+                    region.DisplayName
+                    );
+        }
+    }
+
+    class TableTitle
+    {
+        public string RuTitle { get; set; }
+        public string Name { get; set; }
+        public TableTitle(string ruTitle, string name)
+        {
+            this.RuTitle = ruTitle;
+            this.Name = name;
         }
     }
 

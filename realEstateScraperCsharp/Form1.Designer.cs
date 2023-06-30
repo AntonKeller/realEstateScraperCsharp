@@ -31,13 +31,27 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.открытьФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenProjectFromFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveProjectToFIle = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaveExcelTestMethod = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveInExcelFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveInJSONFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveInXMLFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveInTxtFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.FormToolsBrowserOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.FormToolsBrowserClose = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.LoadTestData = new System.Windows.Forms.ToolStripMenuItem();
+            this.тестыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TestLoadOffers = new System.Windows.Forms.ToolStripMenuItem();
+            this.TestLinksGenerate = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.TestLoadRegions = new System.Windows.Forms.ToolStripMenuItem();
+            this.TestLoadCities = new System.Windows.Forms.ToolStripMenuItem();
+            this.TestLoadDistricts = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузкаДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.форматToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,17 +62,14 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.FormIntervalElement = new System.Windows.Forms.ToolStripStatusLabel();
             this.FormProgramVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.LoadTestData = new System.Windows.Forms.ToolStripMenuItem();
-            this.тестыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TestLoadOffers = new System.Windows.Forms.ToolStripMenuItem();
-            this.TestLinksGenerate = new System.Windows.Forms.ToolStripMenuItem();
             this.Table = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Table)).BeginInit();
@@ -86,7 +97,8 @@
             // файлToolStripMenuItem
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.открытьФайлToolStripMenuItem,
+            this.OpenProjectFromFile,
+            this.SaveProjectToFIle,
             this.сохранитьToolStripMenuItem,
             this.toolStripMenuItem2,
             this.FormToolsBrowserOpen,
@@ -99,28 +111,55 @@
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
-            // открытьФайлToolStripMenuItem
+            // OpenProjectFromFile
             // 
-            this.открытьФайлToolStripMenuItem.Name = "открытьФайлToolStripMenuItem";
-            this.открытьФайлToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.открытьФайлToolStripMenuItem.Text = "Открыть файл";
-            this.открытьФайлToolStripMenuItem.Click += new System.EventHandler(this.открытьФайлToolStripMenuItem_Click);
+            this.OpenProjectFromFile.Name = "OpenProjectFromFile";
+            this.OpenProjectFromFile.Size = new System.Drawing.Size(228, 22);
+            this.OpenProjectFromFile.Text = "Открыть";
+            this.OpenProjectFromFile.Click += new System.EventHandler(this.OpenProjectFromFile_Click);
+            // 
+            // SaveProjectToFIle
+            // 
+            this.SaveProjectToFIle.Name = "SaveProjectToFIle";
+            this.SaveProjectToFIle.Size = new System.Drawing.Size(228, 22);
+            this.SaveProjectToFIle.Text = "Сохранить";
+            this.SaveProjectToFIle.Click += new System.EventHandler(this.SaveProjectToFIle_Click);
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SaveExcelTestMethod});
+            this.SaveInExcelFile,
+            this.SaveInJSONFile,
+            this.SaveInXMLFile,
+            this.SaveInTxtFile});
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
             this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem.Text = "Сохранить как";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
-            // SaveExcelTestMethod
+            // SaveInExcelFile
             // 
-            this.SaveExcelTestMethod.Name = "SaveExcelTestMethod";
-            this.SaveExcelTestMethod.Size = new System.Drawing.Size(193, 22);
-            this.SaveExcelTestMethod.Text = "Сохранить Excel (test)";
-            this.SaveExcelTestMethod.Click += new System.EventHandler(this.SaveExcelTestMethod_Click);
+            this.SaveInExcelFile.Name = "SaveInExcelFile";
+            this.SaveInExcelFile.Size = new System.Drawing.Size(246, 22);
+            this.SaveInExcelFile.Text = "Сохранить как Excel файл";
+            // 
+            // SaveInJSONFile
+            // 
+            this.SaveInJSONFile.Name = "SaveInJSONFile";
+            this.SaveInJSONFile.Size = new System.Drawing.Size(246, 22);
+            this.SaveInJSONFile.Text = "Сохранить как JSON";
+            // 
+            // SaveInXMLFile
+            // 
+            this.SaveInXMLFile.Name = "SaveInXMLFile";
+            this.SaveInXMLFile.Size = new System.Drawing.Size(246, 22);
+            this.SaveInXMLFile.Text = "Сохранить как XML файл";
+            // 
+            // SaveInTxtFile
+            // 
+            this.SaveInTxtFile.Name = "SaveInTxtFile";
+            this.SaveInTxtFile.Size = new System.Drawing.Size(246, 22);
+            this.SaveInTxtFile.Text = "Сохранить как текстовый файл";
             // 
             // toolStripMenuItem2
             // 
@@ -146,6 +185,75 @@
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(225, 6);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(225, 6);
+            // 
+            // LoadTestData
+            // 
+            this.LoadTestData.Name = "LoadTestData";
+            this.LoadTestData.Size = new System.Drawing.Size(228, 22);
+            this.LoadTestData.Text = "Загрузить тестовые дынные";
+            this.LoadTestData.Click += new System.EventHandler(this.LoadTestData_Click);
+            // 
+            // тестыToolStripMenuItem
+            // 
+            this.тестыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TestLoadOffers,
+            this.TestLinksGenerate,
+            this.toolStripMenuItem4,
+            this.TestLoadRegions,
+            this.TestLoadCities,
+            this.TestLoadDistricts,
+            this.toolStripMenuItem5});
+            this.тестыToolStripMenuItem.Name = "тестыToolStripMenuItem";
+            this.тестыToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.тестыToolStripMenuItem.Text = "Тесты";
+            // 
+            // TestLoadOffers
+            // 
+            this.TestLoadOffers.Name = "TestLoadOffers";
+            this.TestLoadOffers.Size = new System.Drawing.Size(206, 22);
+            this.TestLoadOffers.Text = "Загрузить предложения";
+            this.TestLoadOffers.Click += new System.EventHandler(this.TestLoadOffers_Click);
+            // 
+            // TestLinksGenerate
+            // 
+            this.TestLinksGenerate.Name = "TestLinksGenerate";
+            this.TestLinksGenerate.Size = new System.Drawing.Size(206, 22);
+            this.TestLinksGenerate.Text = "Генерация ссылок";
+            this.TestLinksGenerate.Click += new System.EventHandler(this.TestLinksGenerate_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(203, 6);
+            // 
+            // TestLoadRegions
+            // 
+            this.TestLoadRegions.Name = "TestLoadRegions";
+            this.TestLoadRegions.Size = new System.Drawing.Size(206, 22);
+            this.TestLoadRegions.Text = "Список Регионов";
+            this.TestLoadRegions.Click += new System.EventHandler(this.TestLoadRegions_Click);
+            // 
+            // TestLoadCities
+            // 
+            this.TestLoadCities.Name = "TestLoadCities";
+            this.TestLoadCities.Size = new System.Drawing.Size(206, 22);
+            this.TestLoadCities.Text = "Список Городов";
+            // 
+            // TestLoadDistricts
+            // 
+            this.TestLoadDistricts.Name = "TestLoadDistricts";
+            this.TestLoadDistricts.Size = new System.Drawing.Size(206, 22);
+            this.TestLoadDistricts.Text = "Список Дистриктов";
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(203, 6);
             // 
             // настройкиToolStripMenuItem
             // 
@@ -184,7 +292,7 @@
             this.toolStripStatusLabel1,
             this.FormIntervalElement,
             this.FormProgramVersion});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 439);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 496);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(784, 22);
             this.statusStrip1.TabIndex = 4;
@@ -222,55 +330,24 @@
             this.FormProgramVersion.Size = new System.Drawing.Size(154, 17);
             this.FormProgramVersion.Text = "Версия программы: 1.0.0.1";
             // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(225, 6);
-            // 
-            // LoadTestData
-            // 
-            this.LoadTestData.Name = "LoadTestData";
-            this.LoadTestData.Size = new System.Drawing.Size(228, 22);
-            this.LoadTestData.Text = "Загрузить тестовые дынные";
-            this.LoadTestData.Click += new System.EventHandler(this.LoadTestData_Click);
-            // 
-            // тестыToolStripMenuItem
-            // 
-            this.тестыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TestLoadOffers,
-            this.TestLinksGenerate});
-            this.тестыToolStripMenuItem.Name = "тестыToolStripMenuItem";
-            this.тестыToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.тестыToolStripMenuItem.Text = "Тесты";
-            // 
-            // TestLoadOffers
-            // 
-            this.TestLoadOffers.Name = "TestLoadOffers";
-            this.TestLoadOffers.Size = new System.Drawing.Size(206, 22);
-            this.TestLoadOffers.Text = "Загрузить предложения";
-            this.TestLoadOffers.Click += new System.EventHandler(this.TestLoadOffers_Click);
-            // 
-            // TestLinksGenerate
-            // 
-            this.TestLinksGenerate.Name = "TestLinksGenerate";
-            this.TestLinksGenerate.Size = new System.Drawing.Size(206, 22);
-            this.TestLinksGenerate.Text = "Генерация ссылок";
-            this.TestLinksGenerate.Click += new System.EventHandler(this.TestLinksGenerate_Click);
-            // 
             // Table
             // 
-            this.Table.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.Table.BackgroundColor = System.Drawing.Color.Snow;
+            this.Table.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Table.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Table.GridColor = System.Drawing.Color.Firebrick;
             this.Table.Location = new System.Drawing.Point(0, 56);
+            this.Table.Margin = new System.Windows.Forms.Padding(0);
             this.Table.Name = "Table";
-            this.Table.Size = new System.Drawing.Size(784, 383);
+            this.Table.Size = new System.Drawing.Size(784, 440);
             this.Table.TabIndex = 5;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Firebrick;
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.comboBox2);
             this.panel1.Controls.Add(this.comboBox1);
@@ -281,30 +358,22 @@
             this.panel1.Size = new System.Drawing.Size(784, 32);
             this.panel1.TabIndex = 6;
             // 
-            // button1
+            // textBox1
             // 
-            this.button1.Location = new System.Drawing.Point(545, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_3);
+            this.textBox1.Location = new System.Drawing.Point(78, 7);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(157, 20);
+            this.textBox1.TabIndex = 6;
             // 
-            // comboBox1
+            // label1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(626, 6);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(146, 21);
-            this.comboBox1.TabIndex = 1;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(393, 6);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(146, 21);
-            this.comboBox2.TabIndex = 2;
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.Window;
+            this.label1.Location = new System.Drawing.Point(12, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Something:";
             // 
             // checkBox1
             // 
@@ -317,12 +386,37 @@
             this.checkBox1.Text = "...............";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(393, 6);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(146, 21);
+            this.comboBox2.TabIndex = 2;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(626, 6);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(146, 21);
+            this.comboBox1.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(545, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_3);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.ClientSize = new System.Drawing.Size(784, 518);
             this.Controls.Add(this.Table);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
@@ -330,6 +424,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Загрузчик";
             this.Load += new System.EventHandler(this.Form1_Load_1);
             this.menuStrip1.ResumeLayout(false);
@@ -348,7 +443,6 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem открытьФайлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem загрузкаДанныхToolStripMenuItem;
@@ -364,7 +458,6 @@
         private System.Windows.Forms.ToolStripStatusLabel FormIntervalElement;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripMenuItem SaveExcelTestMethod;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem LoadTestData;
         private System.Windows.Forms.ToolStripMenuItem тестыToolStripMenuItem;
@@ -376,6 +469,19 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ToolStripMenuItem TestLoadCities;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem TestLoadDistricts;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem TestLoadRegions;
+        private System.Windows.Forms.ToolStripMenuItem SaveInExcelFile;
+        private System.Windows.Forms.ToolStripMenuItem SaveInJSONFile;
+        private System.Windows.Forms.ToolStripMenuItem SaveInXMLFile;
+        private System.Windows.Forms.ToolStripMenuItem SaveInTxtFile;
+        private System.Windows.Forms.ToolStripMenuItem OpenProjectFromFile;
+        private System.Windows.Forms.ToolStripMenuItem SaveProjectToFIle;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
