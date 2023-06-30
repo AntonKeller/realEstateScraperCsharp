@@ -36,8 +36,6 @@ namespace realEstateScraperCsharp
                 Headless = headless
             });
             return playwright;
-            //this.MyPage = await this.MyBrowser.NewPageAsync();
         }
-        //public static async Task
     }
 }

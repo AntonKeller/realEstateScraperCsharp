@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace realEstateScraperCsharp
 {
@@ -247,8 +248,68 @@ namespace realEstateScraperCsharp
 
         private async void button1_Click_2(object sender, EventArgs e)
         {
+
+        }
+
+        private async void button2_Click_3(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void TestLinksGenerate_Click(object sender, EventArgs e)
+        {
+            var api = new CianAPI();
+            var generate = await api.PageLinksGenerator(this.Page, "https://www.cian.ru/cat.php?deal_type=rent&engine_version=2&offer_type=offices&office_type%5B0%5D=6&region=1");
+
+            Table.Columns.Add("links", "Ссылки");
+            
+            foreach (var link in generate.Links)
+            {
+                Table.Rows.Add(link);
+            }
+        }
+
+        private async void TestLoadOffers_Click(object sender, EventArgs e)
+        {
             var api = new CianAPI();
             var offers = await api.LoadOffersFromPage(this.Page, "https://www.cian.ru/snyat-garazh/");
+            
+            Table.Columns.Add("ID", "ID");
+            Table.Columns.Add("CianId", "Циан ID");
+            Table.Columns.Add("offerTitle", "Заголовок");
+            Table.Columns.Add("AddedTimestamp", "Таймстамп");
+            Table.Columns.Add("CadastralNumber", "Кадастрвоый номер");
+            Table.Columns.Add("floorNumber", "Этаж");
+            Table.Columns.Add("url", "Url");
+            Table.Columns.Add("landType", "Тип земли");
+            Table.Columns.Add("landArea", "Площадь земли");
+
+            foreach (var offer in offers)
+            {
+                Table.Rows.Add(
+                    offer.ID, 
+                    offer.CianId,
+                    offer.Title,
+                    offer.AddedTimestamp, 
+                    offer.CadastralNumber,
+                    offer.floorNumber,
+                    offer.FullUrl,
+                    offer.Land?.Type,
+                    offer.Land?.Area
+                );
+            }
+        }
+
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+            Table.Dock = DockStyle.Fill;
+        }
+
+        private async void button1_Click_3(object sender, EventArgs e)
+        {
+            var api = new CianAPI();
+            var districts = await api.GetCianDistricts(this.Page, 4927);
+            var res = api.SearchDistrictInArray(districts, "Кировский", "Raion");
             Console.WriteLine("");
         }
     }

@@ -50,9 +50,19 @@
             this.FormProgramVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.LoadTestData = new System.Windows.Forms.ToolStripMenuItem();
+            this.тестыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TestLoadOffers = new System.Windows.Forms.ToolStripMenuItem();
+            this.TestLinksGenerate = new System.Windows.Forms.ToolStripMenuItem();
+            this.Table = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Table)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -83,7 +93,8 @@
             this.FormToolsBrowserClose,
             this.toolStripMenuItem1,
             this.toolStripMenuItem3,
-            this.LoadTestData});
+            this.LoadTestData,
+            this.тестыToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
@@ -223,15 +234,88 @@
             this.LoadTestData.Text = "Загрузить тестовые дынные";
             this.LoadTestData.Click += new System.EventHandler(this.LoadTestData_Click);
             // 
+            // тестыToolStripMenuItem
+            // 
+            this.тестыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TestLoadOffers,
+            this.TestLinksGenerate});
+            this.тестыToolStripMenuItem.Name = "тестыToolStripMenuItem";
+            this.тестыToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.тестыToolStripMenuItem.Text = "Тесты";
+            // 
+            // TestLoadOffers
+            // 
+            this.TestLoadOffers.Name = "TestLoadOffers";
+            this.TestLoadOffers.Size = new System.Drawing.Size(206, 22);
+            this.TestLoadOffers.Text = "Загрузить предложения";
+            this.TestLoadOffers.Click += new System.EventHandler(this.TestLoadOffers_Click);
+            // 
+            // TestLinksGenerate
+            // 
+            this.TestLinksGenerate.Name = "TestLinksGenerate";
+            this.TestLinksGenerate.Size = new System.Drawing.Size(206, 22);
+            this.TestLinksGenerate.Text = "Генерация ссылок";
+            this.TestLinksGenerate.Click += new System.EventHandler(this.TestLinksGenerate_Click);
+            // 
+            // Table
+            // 
+            this.Table.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.Table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Table.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Table.GridColor = System.Drawing.Color.Firebrick;
+            this.Table.Location = new System.Drawing.Point(0, 56);
+            this.Table.Name = "Table";
+            this.Table.Size = new System.Drawing.Size(784, 383);
+            this.Table.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Firebrick;
+            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.comboBox2);
+            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(784, 32);
+            this.panel1.TabIndex = 6;
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(22, 42);
+            this.button1.Location = new System.Drawing.Point(545, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "button1";
+            this.button1.TabIndex = 0;
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            this.button1.Click += new System.EventHandler(this.button1_Click_3);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(626, 6);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(146, 21);
+            this.comboBox1.TabIndex = 1;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(393, 6);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(146, 21);
+            this.comboBox2.TabIndex = 2;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.ForeColor = System.Drawing.SystemColors.Window;
+            this.checkBox1.Location = new System.Drawing.Point(294, 8);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(71, 17);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.Text = "...............";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -239,17 +323,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(784, 461);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Table);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Загрузчик";
+            this.Load += new System.EventHandler(this.Form1_Load_1);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Table)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,7 +367,15 @@
         private System.Windows.Forms.ToolStripMenuItem SaveExcelTestMethod;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem LoadTestData;
+        private System.Windows.Forms.ToolStripMenuItem тестыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem TestLoadOffers;
+        private System.Windows.Forms.ToolStripMenuItem TestLinksGenerate;
+        private System.Windows.Forms.DataGridView Table;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
