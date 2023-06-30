@@ -1,8 +1,11 @@
 ﻿using Microsoft.Playwright;
 using Newtonsoft.Json;
+using RestSharp.Serializers.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -11,41 +14,96 @@ using System.Xml.Linq;
 
 namespace realEstateScraperCsharp.Modules.API
 {
-    class DSDirection
-    {
-        public string Code;
-        public string Name;
-    }
-
     class DistrictStructure
     {
-        public int Id;
+        public int? Region_id;
+        public int? City_id;
+        public int? Id;
         public string Name;
         public string Type;
         public DistrictStructure[] Childs;
-        public DSDirection Direction;
+    }
+
+    class LinksGeneration
+    {
+        public int? MaxOffers { get; set; }
+        public int? MaxPages { get; set; }
+        public List<string> Links { get; set; }
+        public LinksGeneration(int? maxOffers, int? maxPages, List<string> links)
+        {
+            this.MaxOffers = maxOffers;
+            this.MaxPages = maxPages;
+            Links = new List<string>(links);
+        }
     }
 
     internal class CianAPI
     {
 
-
-        private Dictionary<string, string> FrontendSerpFields = new Dictionary<string, string>
+        public async Task<DistrictStructure[]> GetCianDistricts(IPage page, int cityId)
         {
-            ["frontend-serp"] = "() => window._cianConfig['frontend-serp'].find(item => item.key === 'initialState').value.results.offers",
-            ["legacy-commercial-serp-frontend"] = "() => window._cianConfig['legacy-commercial-serp-frontend'].find(item => item.key === 'initialState').value.results.offers",
-        };
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Modules", "API", "dataSource", "cian_districts.json");
+            var fs = new FileStream(path, FileMode.Open);
+            // выделяем массив для считывания данных из файла
+            byte[] buffer = new byte[fs.Length];
+            // считываем данные
+            await fs.ReadAsync(buffer, 0, buffer.Length);
+            // декодируем байты в строку
+            string textFromFile1 = Encoding.UTF8.GetString(buffer);
+            return JsonConvert.DeserializeObject<DistrictStructure[]>(textFromFile1);
+        }
+
+        public async Task<LinksGeneration> PageLinksGenerator(IPage page, string baseUrl)
+        {
+            if (IsNull(page, baseUrl)) return null;
+            var scripts = new Dictionary<string, string>
+            {
+                ["frontend-serp"] = "() => window._cianConfig['frontend-serp'].find(item => item.key === 'initialState').value.results.totalOffers",
+                ["legacy-commercial-serp-frontend"] = "() => window._cianConfig['legacy-commercial-serp-frontend'].find(item => item.key === 'initialState').value.results.totalOffers",
+            };
+
+            await page.GotoAsync(baseUrl + "&p=1");
+            string fieldName = await WhatIsFieldNameSerp(page, baseUrl);
+            if (!scripts.ContainsKey(fieldName)) return null;
+            var totalOffers = await page.EvaluateAsync<int?>(scripts[fieldName]);
+            if (totalOffers == null) return null;
+
+            //| Определяем кол-во страниц
+            var maxPages = (int)Math.Floor((decimal)totalOffers / 28);
+            maxPages = maxPages > 54 ? 54 : maxPages;
+
+            //| Генерируем страницы
+            var links = new List<string>();
+            for (int i = 0; i <= maxPages; i++)
+                links.Add($"{baseUrl}&p={i}");
+
+            //await page.GotoAsync(baseUrl + "&p=1", PAGE_OPTIONS);
+            // настройки опции страницы (page options)
+
+            return new LinksGeneration(totalOffers, maxPages, links);
+        }
+
+        private bool IsNull(IPage page, string url) => page == null || url == null;
+
+        private async Task<string> WhatIsFieldNameSerp(IPage page, string url)
+        {
+            if (IsNull(page, url)) return null;
+            await page.GotoAsync(url);
+            var script = "Object.keys(window._cianConfig).find(key => key.toLowerCase().indexOf(\"serp\") !== -1)";
+            return await page.EvaluateAsync<string>(script);
+        }
 
         public async Task<CianOffer[]> LoadOffersFromPage(IPage page, string url)
         {
-            if(page == null || url == null) return null;
-            await page.GotoAsync(url);
-            string fieldName = await page.EvaluateAsync<string>("Object.keys(window._cianConfig).find(key => key.toLowerCase().indexOf(\"serp\") !== -1)");
-            if (!FrontendSerpFields.ContainsKey(fieldName)) return null;
-            var script = FrontendSerpFields[fieldName];
-            var response = await page.EvaluateAsync(script);
-            var offers = JsonConvert.DeserializeObject<CianOffer[]>(response.ToString());
-            return offers;
+            var scripts = new Dictionary<string, string>
+            {
+                ["frontend-serp"] = "() => window._cianConfig['frontend-serp'].find(item => item.key === 'initialState').value.results.offers",
+                ["legacy-commercial-serp-frontend"] = "() => window._cianConfig['legacy-commercial-serp-frontend'].find(item => item.key === 'initialState').value.results.offers",
+            };
+            if (IsNull(page, url)) return null;
+            string fieldName = await WhatIsFieldNameSerp(page, url);
+            if (!scripts.ContainsKey(fieldName)) return null;
+            return await page.EvaluateAsync<CianOffer[]>(scripts[fieldName]);
         }
 
         private DistrictStructure SearchDistrictInObject(DistrictStructure inObj, string name, string type)
