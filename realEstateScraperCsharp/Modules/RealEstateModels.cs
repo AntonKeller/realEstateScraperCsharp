@@ -9,13 +9,35 @@ using System.Windows.Forms;
 
 namespace realEstateScraperCsharp.Modules
 {
+    //class Translater
+    //{
+    //    private Dictionary<string, string> DictionaryEnRu = new() {
+    //        [""] = "00000000000000000000000",
+    //        [""] = "00000000000000000000000",
+    //        [""] = "00000000000000000000000",
+    //        [""] = "00000000000000000000000",
+    //        [""] = "00000000000000000000000",
+    //    };
+    //    private bool Has(string k) => DictionaryEnRu.ContainsKey(k);
+    //    public string EnToRu(string word)
+    //    {
+    //        return Has(word) ? DictionaryEnRu[word] : word;
+    //    }
+    //}
+
     //| Реализовать для классов
     class Field<T>
     {
         public T Value { get; set; }
         public string Description { get; set; }
+        public Field(T value, string Description)
+        {
+            this.Value = value;
+            this.Description = Description;
+        }
     }
 
+    //| Поля для модели, которые включаются во все карточки (общие поля)
     class GeneralFields
     {
         public int? Id { get; set; } //Уникальный id
@@ -169,6 +191,7 @@ namespace realEstateScraperCsharp.Modules
         }
     }
 
+    //| Поля для модели, которые включатся в модель карточки Офис
     class OfficeFields
     {
         public float? TotalArea { get; set; } //Площадь помещения, кв. м
@@ -295,6 +318,7 @@ namespace realEstateScraperCsharp.Modules
         }
     }
 
+    //| Поля для модели, которые включатся в модель карточки Гараж
     class GarageFields
     {
         public float? TotalArea { get; set; } //Площадь помещения, кв. м
@@ -374,6 +398,7 @@ namespace realEstateScraperCsharp.Modules
         }
     }
 
+    //| Поля для модели, которые включатся в модель карточки Земля
     class LandFields
     {
         public float? LandArea { get; set; } //Площадь земли, кв. м
@@ -459,66 +484,11 @@ namespace realEstateScraperCsharp.Modules
         }
     }
 
-    internal class OfficeCardModel
-    {
-        public GeneralFields General { get; set; }
-        public OfficeFields Office { get; set; }
-
-        public OfficeCardModel(GeneralFields general)
-        {
-            this.General = new GeneralFields(general);
-        }
-        public OfficeCardModel(OfficeFields office)
-        {
-            this.Office = new OfficeFields(office);
-        }
-        public OfficeCardModel(GeneralFields general, OfficeFields office)
-        {
-            this.General = new GeneralFields(general);
-            this.Office = new OfficeFields(office);
-        }
-    }
-
-    internal class GarageCardModel
-    {
-        public GeneralFields General { get; set; }
-        public GarageFields Garage { get; set; }
-        
-        //| ...........................................
-        public GarageCardModel(GeneralFields general)
-        {
-            this.General = new GeneralFields(general);
-        }
-        public GarageCardModel(GarageFields garage)
-        {
-            this.Garage = new GarageFields(garage);
-        }
-        public GarageCardModel(GeneralFields general, GarageFields garage)
-        {
-            this.General = new GeneralFields(general);
-            this.Garage = new GarageFields(garage);
-        }
-    }
-
-    internal class LandCardModel
-    {
-        public GeneralFields General { get; set; }
-        public LandFields Land { get; set; }
-        public LandCardModel(GeneralFields general)
-        {
-            this.General = new GeneralFields(general);
-        }
-        public LandCardModel(LandFields land)
-        {
-            this.Land = new LandFields(land);
-        }
-        public LandCardModel(GeneralFields general, LandFields land)
-        {
-            this.General = new GeneralFields(general);
-            this.Land = new LandFields(land);
-        }
-    }
-
+    //| Консолидация всех полей. (Обобщение)
+    //| Промежуточное звено между возвращаемым типом: "Offer" с множества сайтов источников
+    //| и моделями карточек.
+    //| Сокращает кол-во связей при переводе данных.
+    //| ~~~~Нужно решить вопрос с масштабируемостью данной части
     internal class CompleteFields
     {
         public int? Id { get; set; } //Уникальный id
@@ -702,6 +672,77 @@ namespace realEstateScraperCsharp.Modules
             this.BuildingPermitComments = data.BuildingPermitComments;
             this.TerritoryPlanningProject = data.TerritoryPlanningProject;
             this.InitialPermitDocumentation = data.InitialPermitDocumentation;
+        }
+    }
+
+    //| Модель карточки "Офис"
+    //| Создает композицию из полей требуемых данной карточке.
+    internal class OfficeCardModel
+    {
+        public GeneralFields General { get; set; }
+        public OfficeFields Office { get; set; }
+
+        public OfficeCardModel(GeneralFields general)
+        {
+            this.General = new GeneralFields(general);
+        }
+        public OfficeCardModel(OfficeFields office)
+        {
+            this.Office = new OfficeFields(office);
+        }
+        public OfficeCardModel(GeneralFields general, OfficeFields office)
+        {
+            this.General = new GeneralFields(general);
+            this.Office = new OfficeFields(office);
+        }
+    }
+
+    //| Модель карточки "Офис"
+    //| Создает композицию из полей требуемых данной карточке.
+    internal class GarageCardModel
+    {
+        public GeneralFields General { get; set; }
+        public GarageFields Garage { get; set; }
+        
+        //| ...........................................
+        public GarageCardModel(GeneralFields general)
+        {
+            this.General = new GeneralFields(general);
+        }
+        public GarageCardModel(GarageFields garage)
+        {
+            this.Garage = new GarageFields(garage);
+        }
+        public GarageCardModel(GeneralFields general, GarageFields garage)
+        {
+            this.General = new GeneralFields(general);
+            this.Garage = new GarageFields(garage);
+        }
+    }
+
+    //| Модель карточки "Офис"
+    //| Создает композицию из полей требуемых данной карточке.
+    internal class LandCardModel
+    {
+        public GeneralFields General { get; set; }
+        public LandFields Land { get; set; }
+        public LandCardModel(GeneralFields general)
+        {
+            this.General = new GeneralFields(general);
+        }
+        public LandCardModel(CompleteFields completeFields)
+        {
+            this.General = new GeneralFields(completeFields);
+            this.Land = new LandFields(completeFields);
+        }
+        public LandCardModel(LandFields land)
+        {
+            this.Land = new LandFields(land);
+        }
+        public LandCardModel(GeneralFields general, LandFields land)
+        {
+            this.General = new GeneralFields(general);
+            this.Land = new LandFields(land);
         }
     }
 }

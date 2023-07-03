@@ -363,6 +363,11 @@ namespace realEstateScraperCsharp
                     region.DisplayName
                     );
         }
+
+        private void Table_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 
     class TableTitle

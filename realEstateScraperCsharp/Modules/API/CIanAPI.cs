@@ -88,8 +88,6 @@ namespace realEstateScraperCsharp.Modules.API
         private readonly string PathCities = Path.Combine(Directory.GetCurrentDirectory(), "Modules", "API", "dataSource", "cian_cities.json");
         private readonly string PathDistricts = Path.Combine(Directory.GetCurrentDirectory(), "Modules", "API", "dataSource", "cian_districts.json");
 
-
-
         private async Task<string> ReadJsonFile(string path)
         {
             var fs = new FileStream(path, FileMode.Open);
