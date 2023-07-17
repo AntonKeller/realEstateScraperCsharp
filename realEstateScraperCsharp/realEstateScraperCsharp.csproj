@@ -176,6 +176,7 @@
     <Compile Include="Modules\API\CianAPI.cs" />
     <Compile Include="Modules\API\CianConfigurator.cs" />
     <Compile Include="Modules\CianOffer.cs" />
+    <Compile Include="Modules\Fields.cs" />
     <Compile Include="Modules\RealEstateModels.cs" />
     <Compile Include="OwnPlayWright.cs" />
     <Compile Include="Program.cs" />

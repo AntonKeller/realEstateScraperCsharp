@@ -54,25 +54,29 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузкаДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.программаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.FormTitleBrowserStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.FormIntervalElement = new System.Windows.Forms.ToolStripStatusLabel();
             this.FormProgramVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.Table = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripProgressBar();
-            this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
-            this.программаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
+            this.BuildClasses = new System.Windows.Forms.GroupBox();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.GenerateUrlButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Table)).BeginInit();
             this.panel1.SuspendLayout();
+            this.BuildClasses.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -266,8 +270,14 @@
             // загрузкаДанныхToolStripMenuItem
             // 
             this.загрузкаДанныхToolStripMenuItem.Name = "загрузкаДанныхToolStripMenuItem";
-            this.загрузкаДанныхToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.загрузкаДанныхToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.загрузкаДанныхToolStripMenuItem.Text = "Конфигуратор";
+            // 
+            // программаToolStripMenuItem
+            // 
+            this.программаToolStripMenuItem.Name = "программаToolStripMenuItem";
+            this.программаToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.программаToolStripMenuItem.Text = "Программа";
             // 
             // statusStrip1
             // 
@@ -288,32 +298,37 @@
             // FormTitleBrowserStatus
             // 
             this.FormTitleBrowserStatus.Name = "FormTitleBrowserStatus";
-            this.FormTitleBrowserStatus.Size = new System.Drawing.Size(112, 17);
+            this.FormTitleBrowserStatus.Size = new System.Drawing.Size(112, 18);
             this.FormTitleBrowserStatus.Text = "Браузер: отключен";
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(124, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(124, 18);
             this.toolStripStatusLabel2.Text = "                                       ";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(118, 17);
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(103, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(103, 18);
             this.toolStripStatusLabel1.Text = "Загрузка: 0 из 728";
             this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click_1);
             // 
             // FormIntervalElement
             // 
             this.FormIntervalElement.Name = "FormIntervalElement";
-            this.FormIntervalElement.Size = new System.Drawing.Size(124, 17);
+            this.FormIntervalElement.Size = new System.Drawing.Size(124, 18);
             this.FormIntervalElement.Text = "                                       ";
             // 
             // FormProgramVersion
             // 
             this.FormProgramVersion.Name = "FormProgramVersion";
-            this.FormProgramVersion.Size = new System.Drawing.Size(154, 17);
+            this.FormProgramVersion.Size = new System.Drawing.Size(154, 18);
             this.FormProgramVersion.Text = "Версия программы: 1.0.0.1";
             // 
             // Table
@@ -333,6 +348,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Firebrick;
+            this.panel1.Controls.Add(this.GenerateUrlButton);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
@@ -342,6 +358,40 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(784, 32);
             this.panel1.TabIndex = 6;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.SystemColors.Window;
+            this.button4.Location = new System.Drawing.Point(741, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(0);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(40, 23);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "Х";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.SystemColors.Window;
+            this.button3.Location = new System.Drawing.Point(588, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(92, 23);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Продолжить";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.Window;
+            this.button2.Location = new System.Drawing.Point(469, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(119, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Загрузить данные";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click_4);
             // 
             // button1
             // 
@@ -355,49 +405,42 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_3);
             // 
-            // toolStripStatusLabel3
+            // BuildClasses
             // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(118, 17);
+            this.BuildClasses.Controls.Add(this.checkedListBox1);
+            this.BuildClasses.Location = new System.Drawing.Point(12, 62);
+            this.BuildClasses.Name = "BuildClasses";
+            this.BuildClasses.Size = new System.Drawing.Size(99, 134);
+            this.BuildClasses.TabIndex = 8;
+            this.BuildClasses.TabStop = false;
+            this.BuildClasses.Text = "Классы";
             // 
-            // программаToolStripMenuItem
+            // checkedListBox1
             // 
-            this.программаToolStripMenuItem.Name = "программаToolStripMenuItem";
-            this.программаToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.программаToolStripMenuItem.Text = "Программа";
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Items.AddRange(new object[] {
+            "Класс A+",
+            "Класс A",
+            "Класс B+",
+            "Класс B",
+            "Класс B-",
+            "Класс C"});
+            this.checkedListBox1.Location = new System.Drawing.Point(6, 19);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(87, 109);
+            this.checkedListBox1.TabIndex = 8;
             // 
-            // button2
+            // GenerateUrlButton
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.Window;
-            this.button2.Location = new System.Drawing.Point(469, 4);
-            this.button2.Margin = new System.Windows.Forms.Padding(0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(119, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Загрузить данные";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.SystemColors.Window;
-            this.button3.Location = new System.Drawing.Point(588, 4);
-            this.button3.Margin = new System.Windows.Forms.Padding(0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(92, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Продолжить";
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.SystemColors.Window;
-            this.button4.Location = new System.Drawing.Point(741, 4);
-            this.button4.Margin = new System.Windows.Forms.Padding(0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(40, 23);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Х";
-            this.button4.UseVisualStyleBackColor = false;
+            this.GenerateUrlButton.BackColor = System.Drawing.SystemColors.Window;
+            this.GenerateUrlButton.Location = new System.Drawing.Point(348, 5);
+            this.GenerateUrlButton.Margin = new System.Windows.Forms.Padding(0);
+            this.GenerateUrlButton.Name = "GenerateUrlButton";
+            this.GenerateUrlButton.Size = new System.Drawing.Size(119, 23);
+            this.GenerateUrlButton.TabIndex = 9;
+            this.GenerateUrlButton.Text = "Генерация ссылок";
+            this.GenerateUrlButton.UseVisualStyleBackColor = false;
+            this.GenerateUrlButton.Click += new System.EventHandler(this.GenerateUrlButton_Click);
             // 
             // Form1
             // 
@@ -405,6 +448,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(784, 518);
+            this.Controls.Add(this.BuildClasses);
             this.Controls.Add(this.Table);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
@@ -421,6 +465,7 @@
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Table)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.BuildClasses.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -468,6 +513,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.GroupBox BuildClasses;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.Button GenerateUrlButton;
     }
 }
 

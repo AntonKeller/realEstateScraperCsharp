@@ -18,7 +18,7 @@ using static System.Windows.Forms.LinkLabel;
 
 namespace realEstateScraperCsharp
 {
-    
+
     public partial class Form1 : Form
     {
 
@@ -34,7 +34,8 @@ namespace realEstateScraperCsharp
 
         public void CallBrowserWasOpened()
         {
-            foreach (BrowserSubscriber subscriber in browserSubscribers) {
+            foreach (BrowserSubscriber subscriber in browserSubscribers)
+            {
                 subscriber.call(true);
             }
         }
@@ -54,12 +55,12 @@ namespace realEstateScraperCsharp
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void открытьФайлToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -134,7 +135,7 @@ namespace realEstateScraperCsharp
 
         private void button2_Click_2(object sender, EventArgs e)
         {
-            
+
         }
 
 
@@ -148,12 +149,12 @@ namespace realEstateScraperCsharp
 
         private async void button3_Click_1(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            
+
         }
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -216,7 +217,7 @@ namespace realEstateScraperCsharp
 
             string str = response.ToString();
             var offers = JsonConvert.DeserializeObject<CianOffer[]>(str);
-            
+
             foreach (var offer in offers)
             {
                 //| Протестировать парсинг данных по моедлям ...
@@ -250,7 +251,7 @@ namespace realEstateScraperCsharp
             var generate = await api.PageLinksGenerator(this.Page, "https://www.cian.ru/cat.php?deal_type=rent&engine_version=2&offer_type=offices&office_type%5B0%5D=6&region=1");
 
             Table.Columns.Add("links", "Ссылки");
-            
+
             foreach (var link in generate.Links)
             {
                 Table.Rows.Add(link);
@@ -261,7 +262,7 @@ namespace realEstateScraperCsharp
         {
             var api = new CianAPI();
             var offers = await api.LoadOffersFromPage(this.Page, "https://www.cian.ru/snyat-garazh/");
-            
+
             Table.Columns.Add("ID", "ID");
             Table.Columns.Add("CianId", "Циан ID");
             Table.Columns.Add("offerTitle", "Заголовок");
@@ -275,10 +276,10 @@ namespace realEstateScraperCsharp
             foreach (var offer in offers)
             {
                 Table.Rows.Add(
-                    offer.ID, 
+                    offer.ID,
                     offer.CianId,
                     offer.Title,
-                    offer.AddedTimestamp, 
+                    offer.AddedTimestamp,
                     offer.CadastralNumber,
                     offer.floorNumber,
                     offer.FullUrl,
@@ -295,7 +296,7 @@ namespace realEstateScraperCsharp
 
         private async void button1_Click_3(object sender, EventArgs e)
         {
-            
+
         }
 
         private void загрузитьСписокРегионовToolStripMenuItem_Click(object sender, EventArgs e)
@@ -349,17 +350,17 @@ namespace realEstateScraperCsharp
                 new TableTitle("FullName", "FullName"),
                 new TableTitle("DisplayName", "DisplayName"),
             };
-            
-            foreach ( var title in titles)
+
+            foreach (var title in titles)
                 Table.Columns.Add(title.Name, title.RuTitle);
 
             foreach (var region in regions)
                 Table.Rows.Add(
-                    region.Id, 
-                    region.Name, 
-                    region.Lat, 
-                    region.Lng, 
-                    region.FullName, 
+                    region.Id,
+                    region.Name,
+                    region.Lat,
+                    region.Lng,
+                    region.FullName,
                     region.DisplayName
                     );
         }
@@ -367,6 +368,50 @@ namespace realEstateScraperCsharp
         private void Table_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button2_Click_4(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GenerateUrlButton_Click(object sender, EventArgs e)
+        {
+            // ...................................................................................................................
+            // Определяем классы помещений
+            List<string> PermClasses = new()
+            {
+            "&building_class_type%5B0%5D=2", // Класс: A+
+            "&building_class_type%5B0%5D=1", // Класс: A
+            "&building_class_type%5B0%5D=4", // Класс: B+
+            "&building_class_type%5B0%5D=3", // Класс: B
+            "&building_class_type%5B0%5D=8", // Класс: B-
+            "&building_class_type%5B0%5D=5", // Класс: C
+            };
+
+            // Определяем категории URL 
+            List<string> categoriesURL = new()
+            {
+                BaseCategories.OFFICE_SALE, // Категория: продажа офисных помещений
+                BaseCategories.OFFICE_RENT, // Категория: аренда офисных помещений
+            };
+
+            // Определяем генератор ссылок для продажи и аренды офисных помещений
+            var generator1 = new SimpleGeneratorURL(
+                "Продажа/Аренда Офисов",
+                categoriesURL,          // Список базовых ссылок (Включает стандартные параметры: Домен, Движок, Тип предложения, Тип сделки)
+                PermClasses,            // Классы помещения
+                new Interval(50, null), // Интервал площади помещения
+                new Interval(50, null)  // Интервал площади земли
+                );
+
+            // ...................................................................................................................
+
+
+            // ...................................................................................................................
+            // Добавляем Генератор в наш "Конфигурационный Store"
+            var configStore = new ConfigurationStore();
+            // ...................................................................................................................
         }
     }
 
