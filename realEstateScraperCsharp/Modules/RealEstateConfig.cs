@@ -136,7 +136,7 @@ namespace realEstateScraperCsharp.Modules
             ["Продажа складов"] = StaticPermClasses.Bminus,
             ["Аренда складов"] = StaticPermClasses.C,
         };
-
+         
 
         // Инвертированный cловарь "Классы отделки помещения"
         public static Dictionary<string, string> InvertDicPermClasses = new()

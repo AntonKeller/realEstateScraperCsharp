@@ -247,14 +247,7 @@ namespace realEstateScraperCsharp
             };
 
             // Определяем генератор ссылок для продажи и аренды офисных помещений
-            var generator1 = new SimpleGeneratorURL(
-                "Продажа/Аренда Офисов",
-                categoriesURL,           // Список базовых ссылок (Включает стандартные параметры: Домен, Движок, Тип предложения, Тип сделки)
-                PermClasses,             // Классы помещения
-                new Interval(50, null),  // Интервал площади помещения
-                new Interval(50, null),  // Интервал площади земли
-                1                        // ID региона
-                );
+            var generator1 = new CianUrlGenerator(new RealEstateConfig());
 
             // Добавляем логгер в наш генератор
             var logger = new GeneratorURLLogger();
@@ -396,6 +389,11 @@ namespace realEstateScraperCsharp
         {
             FormConfigurator form = new ();
             form.ShowDialog();
+        }
+
+        private void GropBoxSettingsLoad_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 

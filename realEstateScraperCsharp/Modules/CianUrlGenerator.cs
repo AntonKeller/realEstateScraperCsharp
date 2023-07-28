@@ -85,7 +85,7 @@ namespace realEstateScraperCsharp.Modules
         public List<PageLink> GetListUrl() => new List<PageLink>(this.FinalListUrl);
 
         // Конструктор 1
-        public CianUrlGenerator (RealEstateConfig config, Dictionary<string, ILogObserver> observers)
+        public CianUrlGenerator (RealEstateConfig config, Dictionary<string, ILogObserver> observers = null)
         {
             this.Config = new RealEstateConfig(config);
             this.Observers = new Dictionary<string, ILogObserver>(observers);

@@ -190,7 +190,7 @@ namespace realEstateScraperCsharp.Modules.API
         public static string ShorterOkrugMSK(string okrug)
         {
             var dictionary = new Dictionary<string, string>()
-            {
+            {  
                 ["Восточный".ToLower()] = "ВАО".ToLower(),
                 ["Западный".ToLower()] = "ЗАО".ToLower(),
                 ["Зеленоградский".ToLower()] = "ЗелАО".ToLower(),

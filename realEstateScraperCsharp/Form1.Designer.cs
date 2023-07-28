@@ -525,6 +525,7 @@
             this.GropBoxSettingsLoad.TabIndex = 11;
             this.GropBoxSettingsLoad.TabStop = false;
             this.GropBoxSettingsLoad.Text = "Информация";
+            this.GropBoxSettingsLoad.Enter += new System.EventHandler(this.GropBoxSettingsLoad_Enter);
             // 
             // label6
             // 

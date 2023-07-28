@@ -39,11 +39,11 @@
             this.comboBoxCategoriesLoad = new System.Windows.Forms.ComboBox();
             this.panelTitleFinalLink = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBoxPermAreaMax = new System.Windows.Forms.TextBox();
             this.textBoxPermAreaMin = new System.Windows.Forms.TextBox();
-            this.textBoxLandAreaMin = new System.Windows.Forms.TextBox();
+            this.textBoxPermAreaMax = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBoxLandAreaMax = new System.Windows.Forms.TextBox();
+            this.textBoxLandAreaMin = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -132,6 +132,7 @@
             this.checkBoxClassAplus.TabIndex = 6;
             this.checkBoxClassAplus.Text = "А+";
             this.checkBoxClassAplus.UseVisualStyleBackColor = true;
+            this.checkBoxClassAplus.CheckedChanged += new System.EventHandler(this.checkBoxClassAplus_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -166,10 +167,24 @@
             this.groupBox2.Controls.Add(this.textBoxPermAreaMax);
             this.groupBox2.Location = new System.Drawing.Point(12, 99);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(267, 62);
+            this.groupBox2.Size = new System.Drawing.Size(281, 62);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Min/Max Площадь помещения, м.кв";
+            // 
+            // textBoxPermAreaMin
+            // 
+            this.textBoxPermAreaMin.Location = new System.Drawing.Point(6, 28);
+            this.textBoxPermAreaMin.Name = "textBoxPermAreaMin";
+            this.textBoxPermAreaMin.Size = new System.Drawing.Size(128, 21);
+            this.textBoxPermAreaMin.TabIndex = 14;
+            // 
+            // textBoxPermAreaMax
+            // 
+            this.textBoxPermAreaMax.Location = new System.Drawing.Point(146, 28);
+            this.textBoxPermAreaMax.Name = "textBoxPermAreaMax";
+            this.textBoxPermAreaMax.Size = new System.Drawing.Size(128, 21);
+            this.textBoxPermAreaMax.TabIndex = 13;
             // 
             // groupBox4
             // 
@@ -177,38 +192,24 @@
             this.groupBox4.Controls.Add(this.textBoxLandAreaMin);
             this.groupBox4.Location = new System.Drawing.Point(12, 167);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(267, 70);
+            this.groupBox4.Size = new System.Drawing.Size(281, 66);
             this.groupBox4.TabIndex = 16;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Min/Max Площадь участка";
             // 
-            // textBoxPermAreaMax
+            // textBoxLandAreaMax
             // 
-            this.textBoxPermAreaMax.Location = new System.Drawing.Point(135, 28);
-            this.textBoxPermAreaMax.Name = "textBoxPermAreaMax";
-            this.textBoxPermAreaMax.Size = new System.Drawing.Size(123, 21);
-            this.textBoxPermAreaMax.TabIndex = 13;
-            // 
-            // textBoxPermAreaMin
-            // 
-            this.textBoxPermAreaMin.Location = new System.Drawing.Point(6, 28);
-            this.textBoxPermAreaMin.Name = "textBoxPermAreaMin";
-            this.textBoxPermAreaMin.Size = new System.Drawing.Size(123, 21);
-            this.textBoxPermAreaMin.TabIndex = 14;
+            this.textBoxLandAreaMax.Location = new System.Drawing.Point(146, 29);
+            this.textBoxLandAreaMax.Name = "textBoxLandAreaMax";
+            this.textBoxLandAreaMax.Size = new System.Drawing.Size(128, 21);
+            this.textBoxLandAreaMax.TabIndex = 15;
             // 
             // textBoxLandAreaMin
             // 
             this.textBoxLandAreaMin.Location = new System.Drawing.Point(6, 29);
             this.textBoxLandAreaMin.Name = "textBoxLandAreaMin";
-            this.textBoxLandAreaMin.Size = new System.Drawing.Size(123, 21);
+            this.textBoxLandAreaMin.Size = new System.Drawing.Size(128, 21);
             this.textBoxLandAreaMin.TabIndex = 14;
-            // 
-            // textBoxLandAreaMax
-            // 
-            this.textBoxLandAreaMax.Location = new System.Drawing.Point(135, 29);
-            this.textBoxLandAreaMax.Name = "textBoxLandAreaMax";
-            this.textBoxLandAreaMax.Size = new System.Drawing.Size(123, 21);
-            this.textBoxLandAreaMax.TabIndex = 15;
             // 
             // FormConfigurator
             // 

@@ -177,6 +177,7 @@
     <Compile Include="Modules\API\CianConfigurator.cs" />
     <Compile Include="Modules\API\Yandex.cs" />
     <Compile Include="Modules\CianOffer.cs" />
+    <Compile Include="Modules\CianUrlGenerator.cs" />
     <Compile Include="Modules\Fields.cs" />
     <Compile Include="Modules\FormConfigurator.cs">
       <SubType>Form</SubType>
@@ -184,6 +185,7 @@
     <Compile Include="Modules\FormConfigurator.Designer.cs">
       <DependentUpon>FormConfigurator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\RealEstateConfig.cs" />
     <Compile Include="Modules\RealEstateModels.cs" />
     <Compile Include="Modules\StoreType.cs" />
     <Compile Include="OwnPlayWright.cs" />
