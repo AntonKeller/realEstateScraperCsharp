@@ -458,7 +458,7 @@ namespace realEstateScraperCsharp.Modules
     //| и моделями карточек.
     //| Сокращает кол-во связей при переводе данных.
     //| ~~~~Нужно решить вопрос с масштабируемостью данной части
-    internal class CompleteFields
+    public class CompleteFields
     {
         public int? Id { get; set; } //Уникальный id
         public int? InsideId { get; set; } //Внутренний id (на сайте при наличии)
